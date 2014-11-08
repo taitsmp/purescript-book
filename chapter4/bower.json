@@ -17,6 +17,7 @@
   "dependencies": {
     "purescript-arrays"               : ">=0.2.1",
     "purescript-maybe"                : "*",
+    "purescript-math"                 : "*",
     "purescript-strings"              : "*",
     "purescript-foldable-traversable" : "*"
   }

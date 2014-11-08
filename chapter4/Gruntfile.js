@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 
     psc: {
       options: {
-        modules: ["Data.PhoneBook"]
+        modules: ["Data.PhoneBook", "C4ex"]
       },
       all: {
 	src: ["<%=srcFiles%>"],

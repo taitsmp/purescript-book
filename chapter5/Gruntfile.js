@@ -8,10 +8,10 @@ module.exports = function(grunt) {
 
     psc: {
       options: {
-        modules: ["Data.Picture"]
+        modules: ["Data.Picture", "C5ex"]
       },
       all: {
-	src: ["<%=srcFiles%>"],
+		src: ["<%=srcFiles%>"],
         dest: "dist/Main.js"
       }
     },
