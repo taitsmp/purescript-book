@@ -7,11 +7,8 @@ module.exports = function(grunt) {
     srcFiles: ["src/**/*.purs", "bower_components/**/src/**/*.purs"],
 
     psc: {
-      options: {
-        modules: ["Data.PhoneBook", "C4ex"]
-      },
       all: {
-	src: ["<%=srcFiles%>"],
+      src: ["<%=srcFiles%>"],
         dest: "dist/Main.js"
       }
     },
