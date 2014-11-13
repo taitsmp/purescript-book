@@ -1,6 +1,7 @@
 module C6ex where
 
 import Data.Array
+import qualified  Data.Foldable as F
 
 -- newtype constructors must take exactly one argument.  This actually works. 
 newtype Complex = Complex
@@ -27,12 +28,13 @@ instance complexSemiGroup :: Semigroup Complex where
 --instance complexSemiGroup :: Semigroup Cplx where
 --   (<>) c c' = { real: c.real + c'.real, imaginary: c.imaginary + c'.imaginary }
 
-instance nonEmptyFoldable :: Foldable (NonEmpty a) where
-  foldr f b (NonEmpty x []) = f x b
-  foldr f b (NonEmpty x (a:as)) = f x (foldr f b (NonEmpty a as)) 
+instance nonEmptyFoldable :: F.Foldable (NonEmpty a) where
+  foldMap f (NonEmpty x [])     = f x
+  foldMap f (NonEmpty x (a:as)) = (f x) <> F.foldMap f (NonEmpty a as)
+
+  foldr f b (NonEmpty x [])     = f x b
+  --foldr f b (NonEmpty x (a:as)) = f x (F.foldr f b (NonEmpty a as)) 
 
 	foldl f b (NonEmpty x [])     = f b x
-  foldl f b (NonEmpty x (a:as)) = foldl f (f b x) $ NonEmpty a as 
+  --foldl f b (NonEmpty x (a:as)) = F.foldl f (f b x) $ NonEmpty a as 
 
-	foldMap f (NonEmpty x []) m = (f x) <> m
-	foldMap f (NonEmpty x (a:as)) m = (f x) <> (foldMap f (NonEmpty a as))

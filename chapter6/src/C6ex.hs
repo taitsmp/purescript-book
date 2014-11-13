@@ -1,15 +1,15 @@
 module C6ex where
 
 import Data.Monoid
-import Data.Foldable
+import qualified  Data.Foldable as F
 
 data NonEmpty a = NonEmpty a [a]
 
-instance Foldable NonEmpty where
---  foldr f b (NonEmpty x [])     = f x b
---  foldr f b (NonEmpty x (a:as)) = f x (foldr f b (NonEmpty a as)) 
+instance F.Foldable NonEmpty where
+  foldr f b (NonEmpty x [])     = f x b
+  foldr f b (NonEmpty x (a:as)) = f x (F.foldr f b (NonEmpty a as)) 
 
-  foldMap f (NonEmpty x (a:as)) = f x <> foldMap f (NonEmpty a as)
+  foldMap f (NonEmpty x (a:as)) = f x <> F.foldMap f (NonEmpty a as)
   foldMap f (NonEmpty x [])     = f x
 --  foldMap f q m     = f x
 
